@@ -8,6 +8,8 @@ kaboom({
 
 const MOVE_SPEED = 120
 const JUMP_FORCE = 360
+const BIG_JUMP_FORCE = 550
+let CURRENT_JUMP_FORCE = JUMP_FORCE
 
 loadRoot('https://i.imgur.com/')
 loadSprite('coin', 'wbKxhcd.png')
@@ -92,11 +94,13 @@ scene("game", () => {
 			},
 			smallify() {
 				this.scale = vec2(1)
+				CURRENT_JUMP_FORCE = JUMP_FORCE
 				timer = 0
 				isBig = false
 			},
 			biggify(time) {
 				this.scale = vec2(2)
+				CURRENT_JUMP_FORCE = BIG_JUMP_FORCE
 				timer = time
 				isBig = true
 			}
@@ -150,7 +154,7 @@ scene("game", () => {
 
 	keyDown('space', () => {
 		if(player.grounded()) {
-			player.jump(JUMP_FORCE)
+			player.jump(CURRENT_JUMP_FORCE)
 		}
 	})
 });
