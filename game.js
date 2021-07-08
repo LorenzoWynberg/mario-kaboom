@@ -9,6 +9,7 @@ kaboom({
 const MOVE_SPEED = 120
 const JUMP_FORCE = 360
 const BIG_JUMP_FORCE = 550
+const FALL_DEATH = 400 
 let CURRENT_JUMP_FORCE = JUMP_FORCE
 let IS_JUMPING = true
 
@@ -155,6 +156,13 @@ scene("game", ({score}) => {
 		if(IS_JUMPING) {
 			destroy(d)
 		} else {
+			go('lose', { score: scoreLabel.value })
+		}
+	})
+
+	player.action(() => {
+		camPos(player.pos)
+		if(player.pos.y >= FALL_DEATH){
 			go('lose', { score: scoreLabel.value })
 		}
 	})
