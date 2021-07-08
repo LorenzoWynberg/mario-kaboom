@@ -120,6 +120,12 @@ scene("game", () => {
 		m.move(75, 0)
 	})
 
+	const ENEMY_SPEED = 25
+
+	action('dangerous', (d) => {
+		d.move(-ENEMY_SPEED, 0)
+	})
+
 	player.on("headbump", (obj) => {
 		if(obj.is('coin-surprise')){
 			gameLevel.spawn('$', obj.gridPos.sub(0,1))
