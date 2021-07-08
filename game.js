@@ -134,6 +134,12 @@ scene("game", () => {
 		player.biggify(6)
 	})
 
+	player.collides('coin', (c) => {
+		destroy(c)
+		scoreLabel.value++
+		scoreLabel.text = scoreLabel.value
+	})
+
 	keyDown('left', () => {
 		player.move(-MOVE_SPEED, 0)
 	})
